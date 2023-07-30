@@ -16,6 +16,21 @@ import { Rules } from './pages/Rules'
 //add a leaderboard of top scores from users leaderboard for each week
 //add a rules page
 // change the website theme
+//Function that tracks removal and addition of players to player Teamsheet\
+//external api 
+// Lamda function that runs daily that finds out if matches occured and than gets data
+// Lamda function looks historical scores of a players and runs if any sort of match data changes.
+
+
+//Possible DB actions
+//UI adds and removes player from user TeamSheet
+//UI requests user matchday scoring ranked
+//adds player kills and placement
+// get lists of players, their costs, kills, and placements 
+//get scores for players 
+//mat
+
+
 
 function App() {
   const [count, setCount] = useState(0)

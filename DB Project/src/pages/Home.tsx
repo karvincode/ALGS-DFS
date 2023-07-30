@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Button, Col, Container, Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import allPlayers from "../data/"
 
 export function Home() {
 
@@ -17,6 +18,8 @@ export function Home() {
         "Matchday 10",
         "Finals",
     ];
+
+
     const [selectedMatchdayIndex, selectMatchdayIndex] = useState(1);
 
     const handleMatchdayChange = (event: { target: { value: any; }; }) => {

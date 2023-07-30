@@ -86,6 +86,7 @@ export function Team() {
                     <Row md={2} xs={1} lg={3} className="g-3">
 
                         {selectedPlayers.map(player => (
+                            
                             <Col key={player.name}>
                                 <RosterList player={player} handleRemovePlayer={handleRemovePlayer} editMode={editToggle} />
                             </Col>
