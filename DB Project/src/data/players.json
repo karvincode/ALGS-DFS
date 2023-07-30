@@ -1,0 +1,47 @@
+[
+
+{
+    "id": 1,
+    "name": "verhulst",
+    "cost": 5,
+    "team": "TSM"
+},
+{
+    "id":2,
+    "name": "Vaxlon",
+    "cost": 3.5,
+    "team": "100T"
+},
+{
+    "id":3,
+    "name": "Knoqd",
+    "cost": 4.5,
+    "team": "OG"
+},
+{
+    "id":4,
+    "name": "Zer0",
+    "cost": 4,
+    "team": "DZ"
+},
+{
+    "id":5,
+    "name": "YanYa",
+    "cost": 5,
+    "team": "LG"
+},
+{
+    "id":6,
+    "name": "sSikezz",
+    "cost": 5,
+    "team": "XSET"
+},
+{
+    "id":7,
+    "name": "Vein",
+    "cost": 4.5,
+    "team": "OXY"
+}
+
+
+]
