@@ -9,8 +9,8 @@ export function Navbar() {
                     <Nav.Link to="/" as={NavLink}>
                         Home
                     </Nav.Link>
-                    <Nav.Link to="/team" as={NavLink}>
-                        Team Selection
+                    <Nav.Link to="/Roster" as={NavLink}>
+                        Roster Selection
                     </Nav.Link>
                     <Nav.Link to="/rules" as={NavLink}>
                         Rules

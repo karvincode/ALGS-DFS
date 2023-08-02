@@ -4,6 +4,8 @@ import Container from "react-bootstrap/esm/Container";
 import allPlayers from "../data/players.json"
 import RosterList from "../components/RosterSpot"
 
+//6 - #of rostered players create that many black cards
+
 type Player = {
     id: number;
     name: string;
@@ -12,7 +14,7 @@ type Player = {
 }
 
 
-export function Team() {
+export function Roster() {
     const [MatchDay, setMatchDay] = useState(3);
     const [players, setPlayers] = useState<Player[]>([]);
     const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
@@ -25,7 +27,7 @@ export function Team() {
             .then((data) => setPlayers(data));
     }, []);
 
-    const toggleTeamEdit = () => {
+    const toggleRosterEdit = () => {
         ChangeEditToggle((editToggle) => !editToggle);
     };
 
@@ -92,7 +94,7 @@ export function Team() {
                             </Col>
                         ))}
                     </Row>
-                    <button className="mt-4" onClick={toggleTeamEdit}> {editToggle ? 'Edit Team' : 'SaveChanges'}</button>
+                    <button className="mt-4" onClick={toggleRosterEdit}> {editToggle ? 'Edit Roster' : 'SaveChanges'}</button>
                 </Col>
             </Row>
         </Container>

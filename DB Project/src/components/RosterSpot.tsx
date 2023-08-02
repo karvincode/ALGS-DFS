@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
-import { Team } from '../pages/Team';
+import { Roster } from '../pages/Roster';
 
 type Player = {
     id: number

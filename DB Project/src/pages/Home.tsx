@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Button, Col, Container, Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import allPlayers from "../data/"
+import allPlayers from "../data/players.json"
 
 export function Home() {
 
@@ -44,7 +44,7 @@ export function Home() {
 
                             <Button size="sm" className="ms-2"><Link to="/team" className="text-white text-decoration-none" >Sign In Here</Link></Button>
                         </div>
-                        <h2>Pick your Team</h2>
+                        <h2>Pick your Dream Roster</h2>
                         <div>Pick your Dream Lineup of Apex Legends Pros using a budget and drafting up to 5 players to compete with other drafters.</div>
                     </Col>
                     <Col xs="6">
