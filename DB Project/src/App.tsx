@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import { Navbar } from './components/Navbar'
 import { Home } from './pages/Home'
-import { Roster,  } from './pages/Roster'
+import { Roster  } from './pages/Roster'
 import { Rules } from './pages/Rules'
 // import { RosterProvider } from './context/RosterContext'
 
