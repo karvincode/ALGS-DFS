@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Button, Col, Container, Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import allPlayers from "../data/players.json"
+
 
 export function Home() {
 
@@ -34,20 +34,23 @@ export function Home() {
 
             <Container>
                 <Row>
-                    <Col>
+                    <Col className="">
                         <h2>Compete in Daily Fantasy ALGS</h2>
-                        <div className="d-flex">
-                            <button>Sign Up Here</button>
-                            <Button size="sm" className="me-2"><Link to="/team" className="text-white text-decoration-none" >Sign Up Here</Link></Button>
+                        <div className="d-flex align-items-center">
+                            <Button size="sm" className="me-2 bg-light"><Link to="/team" className="text-black text-decoration-none" >Sign Up Here</Link></Button>
 
-                            <p className="text-center">or if you already have an account</p>
+                            <p className="text-center ">or if you already have an account</p>
 
-                            <Button size="sm" className="ms-2"><Link to="/team" className="text-white text-decoration-none" >Sign In Here</Link></Button>
+                            <Button size="sm" className="ms-2 bg-light"><Link to="/team" className="text-black text-decoration-none" >Sign In Here</Link></Button>
                         </div>
-                        <h2>Pick your Dream Roster</h2>
-                        <div>Pick your Dream Lineup of Apex Legends Pros using a budget and drafting up to 5 players to compete with other drafters.</div>
+                        <h3>Pick your Dream Roster</h3>
+                        <p>Pick your Dream Lineup of Apex Legends Pros using a budget and drafting up to 5 players to compete with other drafters.</p>
+                        <h3>How do you play?</h3>
+                        <p>You select 6 players from the pool of 60 that are playing that matchday each with a varying costs and you must keep the total cost under the Salary Cap.</p>
+                        <h3>How you win?</h3>
+                        <p>Each matchday(Round) is seperately tracked and scored the ultimate goal is to win that singular matchday. You can view your rank on both the Roster page and to the right on the leaderboard.</p>
                     </Col>
-                    <Col xs="6">
+                    <Col xs="6" className="pl-10">
                         <div className="d-flex">
                             <h2>{selectedMatchday} LeaderBoard</h2>
                             <select
@@ -64,13 +67,14 @@ export function Home() {
                             </select>
                         </div>
 
-                        <table className="table table-sm table-bordered table-auto"></table>
+                        <table className="table table-sm table-bordered table-auto mt-2">
                         <thead>
                             <tr>
                                 <th scope="col">Rank</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">Points</th>
                             </tr>
+                        </thead>
                         <tbody>
                             {/* {placeScoring.map((leaderboard, index) => {
                                 const rank = index +1;
@@ -84,7 +88,7 @@ export function Home() {
                             })} */}
 
                         </tbody>
-                        </thead>
+                        </table>
                     </Col>
                 </Row>
             </Container>

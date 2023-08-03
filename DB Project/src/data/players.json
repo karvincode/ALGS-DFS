@@ -4,44 +4,57 @@
     "id": 1,
     "name": "verhulst",
     "cost": 5,
-    "team": "TSM"
+    "team": "TSM",
+    "kills": 4,
+    "placement":12
 },
 {
     "id":2,
     "name": "Vaxlon",
     "cost": 3.5,
-    "team": "100T"
-
+    "team": "100T",
+    "kills": 4,
+    "placement":12
 },
 {
     "id":3,
     "name": "Knoqd",
     "cost": 4.5,
-    "team": "OG"
+    "team": "OG",
+    "kills": 4,
+    "placement":12
 },
 {
     "id":4,
     "name": "Zer0",
     "cost": 4,
-    "team": "DZ"
+    "team": "DZ",
+    "kills": 4,
+    "placement":12
 },
 {
     "id":5,
     "name": "YanYa",
     "cost": 5,
-    "team": "LG"
+    "team": "LG",
+    "kills": 4,
+    "placement":12
 },
 {
     "id":6,
     "name": "sSikezz",
     "cost": 5,
-    "team": "XSET"
+    "team": "XSET",
+    "kills": 4,
+    "placement":12
 },
 {
     "id":7,
     "name": "Vein",
     "cost": 4.5,
-    "team": "OXY"
+    "team": "OXY",
+    "kills": 4,
+    "placement":12
 }
 
 
