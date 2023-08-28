@@ -1,45 +1,31 @@
 import React, { useState } from 'react';
 import { Card, Button, Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 import { Roster } from '../pages/Roster';
+import {Player} from '../App'
 
-type Player = {
-    id: number
-    name: string
-    cost: number
-    team: string
-    kills: number
-    placement: number
-}
-type RosterListProps = {
+type RosterPlayerCardProps = {
     player: Player;
-    handleRemovePlayer: (playerId: number) => void; // Define the prop for handleRemovePlayer
-    editMode: boolean;
+    removePlayerFromWorkingRoster: (player: Player) => void; // Define the prop for handleRemovePlayer
     matchday: number
     points: number
 };
 
-const RosterList: React.FC<RosterListProps> = ({ player, handleRemovePlayer, editMode, matchday, points }) => {
+export const RosterPlayerCard: React.FC<RosterPlayerCardProps> = ({ player, removePlayerFromWorkingRoster, matchday, points }) => {
     const { id, name, cost, team, kills, placement } = player;
-
-    const handleRemove = () => {
-        handleRemovePlayer(player.id); // Call the handleRemovePlayer function with the player's id
-    };
-
     return (
         <>
             <Card className="h-100">
                 <Card.Body className="d-flex flex-column">
                     <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
                         <span className="fs-2">{name}</span>
-                        {editMode ?
-                            <></>
-                            : <Button
-                                onClick={handleRemove}
-                                className="bg-secondary text-black"
-                                size="sm"
-                            >
-                                Remove
-                            </Button>}
+
+                        <Button
+                            onClick={() => removePlayerFromWorkingRoster(player)}
+                            className="bg-secondary text-black"
+                            size="sm"
+                        >
+                            Remove
+                        </Button>
                     </Card.Title>
                     <Card.Text className="d-flex justify-content-between">
                         <div className="d-flex align-items-start">
@@ -52,8 +38,8 @@ const RosterList: React.FC<RosterListProps> = ({ player, handleRemovePlayer, edi
                     </Card.Text>
                 </Card.Body>
             </Card>
-            
-            <Modal  className="modal fade" id="scoringDetailModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+
+            <Modal className="modal fade" id="scoringDetailModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -73,5 +59,3 @@ const RosterList: React.FC<RosterListProps> = ({ player, handleRemovePlayer, edi
         </>
     );
 };
-
-export default RosterList;

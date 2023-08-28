@@ -12,7 +12,7 @@ export function Rules() {
         <Tabs
             defaultActiveKey="rules"
             className="mx-5">
-            <Tab eventKey="rules" title="rules" className="mt-3">
+            <Tab eventKey="rules" title="Rules" className="mt-3">
                 <h3 className="mx-5">Rules</h3>
                 <ul className="mx-5">
                     <li>You pick up to 6 players all located within the North American Region only during Playoffs and the ALGS Championship does the available player pool open to the teams that qualified.</li>
@@ -21,7 +21,7 @@ export function Rules() {
                     <li>In instances where a player plays multiple times during that day the cost of the player will double. </li>
                 </ul>
             </Tab>
-            <Tab eventKey="scoring" title="scoring" className="mt-3">
+            <Tab eventKey="scoring" title="Scoring" className="mt-3">
                 <h3 className="mx-5">Scoring</h3>
                 <ul className="mx-5">
                     <li>Players will earn points in two ways placement and kills. Placement will be indicative of their team's success and kills will be their own personal tally.</li>

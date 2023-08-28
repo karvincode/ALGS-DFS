@@ -34,7 +34,14 @@ import { Rules } from './pages/Rules'
 // get lists of players, their costs, kills, and placements (scores) 
 
 
-
+export type Player = {
+  id: number
+  name: string
+  cost: number
+  team: string
+  kills: number
+  placement: number
+}
 
 function App() {
 

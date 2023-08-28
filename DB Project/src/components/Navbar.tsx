@@ -1,7 +1,9 @@
+import { useState } from "react"
 import { Container, Nav, Navbar as NavbarBs } from "react-bootstrap"
 import { NavLink, useNavigate } from "react-router-dom"
 
 export function Navbar() {
+    const [LoggedIn,ToggleLoggedIn] = useState(false)
     return (
         <NavbarBs sticky="top" className="bg-light shadow-sm mb-3">
             <Container>
@@ -16,7 +18,13 @@ export function Navbar() {
                         Rules
                     </Nav.Link>
                 </Nav>
+                {LoggedIn? 
+                <><a className="mx-3 nav-link">Logout</a><Nav.Link to="/profile" as={NavLink}></Nav.Link></>
+                 :
+                <a className="mx-3 nav-link">Login</a>
+                }
             </Container>
+            
         </NavbarBs>
     )
 }

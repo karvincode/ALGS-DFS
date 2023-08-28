@@ -1,113 +1,53 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Container from "react-bootstrap/esm/Container";
-import allPlayers from "../data/players.json"
-import RosterList from "../components/RosterSpot"
-
-//6 - #of rostered players create that many black cards
-
-type Player = {
-    id: number;
-    name: string;
-    cost: number;
-    team: string;
-    kills: number;
-    placement: number;
-}
-
+import {RosterPlayerCard} from "../components/RosterPlayerCard"
+import { ViewPlayers } from "../components/ViewPlayers";
+import {Player} from '../App'
+import playersFile from "../data/players.json"
+import { ActiveRoster } from "../components/ActiveRoster";
 
 export function Roster() {
-    const [MatchDay, setMatchDay] = useState(3);
-    const [players, setPlayers] = useState<Player[]>([]);
-    const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
-    const [editToggle, ChangeEditToggle] = useState(true);
+    const [matchDay, setMatchDay] = useState(3);
+    const [playersInWorkingRoster, setPlayersInWorkingRoster] = useState<Player[]>([]);
+    const [playersNotInWorkingRoster, setPlayersNotInWorkingRoster] = useState<Player[]>([]);
     const [totalCost, setTotalCost] = useState(0);
-    const [totalPoints, updateTotalPoints] = useState(0)
+    const [totalPoints, setTotalPoints] = useState(0)
+   
+    //Initially because players in Working ROster is empty every player is not in Working Roster
     useEffect(() => {
-        // Replace 'data.json' with the correct URL or file path to your JSON data
-        fetch('data.json')
-            .then((response) => response.json())
-            .then((data) => setPlayers(data));
-    }, []);
+        setPlayersNotInWorkingRoster(playersFile)
+    }, [])
 
-    const toggleRosterEdit = () => {
-        ChangeEditToggle((editToggle) => !editToggle);
-    };
+    function addPlayerToWorkingRoster(player: Player) {
 
-    const filteredPlayerList = allPlayers.filter((player) => {
-        return !selectedPlayers.some((selectedPlayer) => selectedPlayer.id === player.id);
-    })
-
-    function handleAddItem(player: Player) {
-        const isItemSelected = selectedPlayers.some((selectedPlayer) => selectedPlayer.id === player.id);
-
-        if (!isItemSelected && selectedPlayers.length < 6) {
-            setSelectedPlayers((prevPlayers) => [...prevPlayers, player]);
-            setTotalCost(totalCost + player.cost);
-            updateTotalPoints(totalPoints + player.kills + player.placement)
+        if (playersInWorkingRoster.length < 6) {
+            setPlayersInWorkingRoster([...playersInWorkingRoster, player])
+            setPlayersNotInWorkingRoster(playersNotInWorkingRoster.filter((p) => p.id !== player.id));
+            setTotalPoints(totalPoints + player.kills + player.placement)
         }
     };
-    function handleRemovePlayer(playerId: number) {
-        const playerToRemove = selectedPlayers.find((player) => player.id === playerId);
-        if (playerToRemove) {
-            setSelectedPlayers((prevPlayers) => prevPlayers.filter((p) => p.id !== playerId));
-            setTotalCost((prevTotalCost) => prevTotalCost - playerToRemove.cost);
-            updateTotalPoints(totalPoints - playerToRemove.kills - playerToRemove.placement)
-        }
+    // const playerToRemove = playersInWorkingRoster.find((player) => player.id === playerId);
+    function removePlayerFromWorkingRoster(player: Player) {
+        setPlayersInWorkingRoster(playersInWorkingRoster.filter((p) => p.id !== player.id));
+        setPlayersNotInWorkingRoster([...playersNotInWorkingRoster, player])
+    
+        setTotalCost(totalCost - player.cost);
+        setTotalPoints(totalPoints - player.kills - player.placement)
+
     }
-
+    // const playersNotInWorkingRoster = allPlayers.filter((player) => {
+    //     return !playersInWorkingRoster.some((selectedPlayer) => selectedPlayer.id === player.id);
+    // })
     return (
         ///Will have 2 components one that pops out when the user selects to add a player
         <Container className="mw-100">
             <Row>
                 <Col className="w-0">
-                    <h4>Players</h4>
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Team</th>
-                                <th scope="col">Cost</th>
-                                {editToggle ? <th></th> : <th scope="col">Action</th>}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredPlayerList.map((player) => {
-                                return (
-                                    <tr>
-                                        <td>{player.name}</td>
-                                        <td>{player.team}</td>
-                                        <td>${player.cost}</td>
-                                        {editToggle ? <td></td> : <td><button className="bg-success rounded-pill" onClick={() => handleAddItem(player)}>Add</button></td>}
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                    <ViewPlayers addPlayerToWorkingRoster={addPlayerToWorkingRoster} playersNotInWorkingRoster={playersNotInWorkingRoster} ></ViewPlayers>
                 </Col>
                 <Col xs={8} className="px-2">
-                    <div className="bg-light p-3 mb-2">
-                        <div className="d-flex justify-content-between">
-                            <h4>Current Rostered Players: {selectedPlayers.length}/6</h4>
-                            <h4>Total Cost: ${totalCost}/$30</h4>
-                            <h4 className="mb-3">Current MatchDay: {MatchDay}</h4>
-                        </div>
-                    </div>
-                    <Row md={2} xs={1} lg={3} className="g-3">
-
-                        {selectedPlayers.map(player => (
-
-                            <Col key={player.name}>
-                                <RosterList key={player.id} player={player} points={player.kills + player.placement} handleRemovePlayer={handleRemovePlayer} editMode={editToggle} matchday={MatchDay} />
-                            </Col>
-                        ))}
-                    </Row>
-                    <div className="d-flex mt-4">
-                        {editToggle ? <button className="bg-secondary rounded-pill" onClick={toggleRosterEdit}>Edit Roster</button> : <button className="bg-success rounded-pill" onClick={toggleRosterEdit}>Save Changes</button>}
-                        <div className="bg-light d-flex mx-2 px-2 py-1">
-                            <h4>TotalPoints: {totalPoints}</h4>
-                        </div>
-                    </div>
+                    <ActiveRoster playersInWorkingRoster={playersInWorkingRoster} totalCost={totalCost} matchDay={matchDay} totalPoints={totalPoints} removePlayerFromWorkingRoster={removePlayerFromWorkingRoster}></ActiveRoster>
                 </Col>
             </Row>
         </Container>

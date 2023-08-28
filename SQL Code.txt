@@ -1,0 +1,117 @@
+Can change Player PrimaryKey to PlayerName and TeamName allowing for the removal of PlayerID it is called a composite key
+When googling DB is PostgreSQL
+
+TASKS:
+
+1.Create Tables for the entities
+
+Create Table User (
+	username VARCHAR(16) UNIQUE,
+	password VARCHAR(12),
+	Email VARCHAR(24) UNIQUE,,
+	PRIMARY KEY(username)
+	
+);
+
+Create Table Roster (
+	username INT,
+	PlayerID INT,
+	FOREIGN KEY(username) REFERENCES User(username) ON DELETE SET NULL
+	FOREIGN KEY(PlayerID) REFERENCES Player(PlayerID) ON DELETE SET NULL
+);
+
+Create Table Player(
+	playerID INT PRIMARY KEY AUTO_INCREMENT,
+	playercost INT,
+	TeamName VARCHAR(20) DEFAULT 'FA',
+	PlayerName VARCHAR(20)
+	
+);
+
+Create Table PlayerScore(
+	weekID DATE,'
+	playerID INT,
+	Score INT,
+	FOREIGN KEY(playerID) REFERENCES Player(playerID) ON DELETE SET NULL
+);
+
+1. Create user Registers add the User to the User Table check to see if the USERNAME exists including there password possibly there Email though I think Cognito makes it so I do not need it.
+
+2. Read User 
+
+3. Update User (Change UserData such as username)
+
+3a. Maybe Delete User I am not going to be sending emails or getting card information so I dont see the point
+
+4. READ ROSTER (find the current weekID's roster  the User logged in)
+I dont think this actually needed since I will just delete the entire roster table each week
+
+5. READ PLAYERS FROM ROSTER FROM USER (get the scores of the players)
+select *
+from roster
+where username ='username'
+
+5. CREATE ROW IN ROSTER (add Players to the User's Roster with their player score)
+INSERT INTO Roster (username, PlayerID)
+VALUES
+    ('kesav', 1),
+    ('kesav', 2),
+    ('kesav', 5),
+    ('kesav', 7),
+
+6. DELETE ROWS FROM ROSTER (Removing Players Via Save Changes)
+
+DELETE FROM Roster
+WHERE username = 'kesav';
+
+7. DELETE EVERY ROW FROM ROSTER (New Week)
+
+8. READ FROM ROSTER AND PLAYERSCORE FILTER BY USERNAME AND WEEKID SORT BY PLAYERSCORE (Create a Leaderboard)
+
+SELECT 
+	u.userName 
+	SUM ( ps.score) AS [Roster Score]
+FROM User as u
+LEFT JOIN Roster as r
+	on u.username = r.username
+LEFT JOIN Player as p
+ 	on r.playerID = p.playerID
+LEFT JOIN PlayerScore as ps
+	on r.playerID = ps.PlayerID
+ORDER BY
+    [Roster Score] DESC;
+
+9. UPDATE PlayerScore Score (A function called when a change occurs on liquipedia via the API)
+10. CREATE PlayerScore Score (A function called when a change occurs on liquipedia via the API)
+11. DELETE PlayerScore Score (New week occurs)
+
+If change has occured
+
+
+12. CREATE PLAYER (when a player not before seen is listed on Liquipedia for ALGS.)
+
+if Player Check:
+
+If Player Check is false Add Player:
+INSERT INTO PLAYER VALUES(playercost, TeamName, PlayerName)
+
+Retrieve WeekID's incase it was last minute
+
+ALTER TABLE PlayerScore(WeekID,SCORE, PLAYER
+
+
+13.SQL Function that gives weeks a WeekID since they arent as simple as Feb.12 its like NA-ALGS-MatchDay1.
+will have to figure out how I want to store that based on how the API names it
+Make Dates YYYY-MM-DD
+
+14. CHECK the rosters of every team in ALGS and look at roster movements to see if one of those teams had a roster move and alter the Team data of the players in the DB
+Have to figure out if I want to check every transaction or just only team
+
+{
+UPDATE Player
+Set TeamName = "NewTeamName"
+Where PlayerName= "PlayerName" And TeamName = 'OldTeamName'
+}
+15. Something if a Player CHanges a Name
+
+

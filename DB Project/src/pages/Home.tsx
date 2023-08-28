@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Button, Col, Container, Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import { ViewLeaderBoard } from "../components/ViewLeaderBoard";
 
 
 export function Home() {
@@ -47,48 +48,11 @@ export function Home() {
                         <p>Pick your Dream Lineup of Apex Legends Pros using a budget and drafting up to 5 players to compete with other drafters.</p>
                         <h3>How do you play?</h3>
                         <p>You select 6 players from the pool of 60 that are playing that matchday each with a varying costs and you must keep the total cost under the Salary Cap.</p>
-                        <h3>How you win?</h3>
+                        <h3>How do you win?</h3>
                         <p>Each matchday(Round) is seperately tracked and scored the ultimate goal is to win that singular matchday. You can view your rank on both the Roster page and to the right on the leaderboard.</p>
                     </Col>
                     <Col xs="6" className="pl-10">
-                        <div className="d-flex">
-                            <h2>{selectedMatchday} LeaderBoard</h2>
-                            <select
-                                className="mx-3"
-                                onChange={handleMatchdayChange}
-                                value={selectedMatchdayIndex}
-                            >
-                                <option value="">--Please choose an option--</option>
-                                {matchdays.map((matchday, index) => (
-                                    <option key={index} value={index}>
-                                        {matchday}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <table className="table table-sm table-bordered table-auto mt-2">
-                        <thead>
-                            <tr>
-                                <th scope="col">Rank</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Points</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/* {placeScoring.map((leaderboard, index) => {
-                                const rank = index +1;
-                                return (
-                                    <tr>
-                                        <td className="narrow-column">{rank}</td>
-                                        <td className="narrow-column">{leaderboard.username}</td>
-                                        <td className="narrow-column">{leaderboard.points}</td>
-                                    </tr>
-                                );
-                            })} */}
-
-                        </tbody>
-                        </table>
+                        <ViewLeaderBoard selectedMatchday={selectedMatchday} handleMatchdayChange={handleMatchdayChange} selectedMatchdayIndex={selectedMatchdayIndex} matchdays={matchdays}></ViewLeaderBoard>
                     </Col>
                 </Row>
             </Container>
