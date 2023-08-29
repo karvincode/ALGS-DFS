@@ -1,9 +1,9 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Container from "react-bootstrap/esm/Container";
-import {RosterPlayerCard} from "../components/RosterPlayerCard"
+import { RosterPlayerCard } from "../components/RosterPlayerCard"
 import { ViewPlayers } from "../components/ViewPlayers";
-import {Player} from '../App'
+import { Player } from '../App'
 import playersFile from "../data/players.json"
 import { ActiveRoster } from "../components/ActiveRoster";
 
@@ -13,7 +13,7 @@ export function Roster() {
     const [playersNotInWorkingRoster, setPlayersNotInWorkingRoster] = useState<Player[]>([]);
     const [totalCost, setTotalCost] = useState(0);
     const [totalPoints, setTotalPoints] = useState(0)
-   
+
     //Initially because players in Working ROster is empty every player is not in Working Roster
     useEffect(() => {
         setPlayersNotInWorkingRoster(playersFile)
@@ -31,7 +31,7 @@ export function Roster() {
     function removePlayerFromWorkingRoster(player: Player) {
         setPlayersInWorkingRoster(playersInWorkingRoster.filter((p) => p.id !== player.id));
         setPlayersNotInWorkingRoster([...playersNotInWorkingRoster, player])
-    
+
         setTotalCost(totalCost - player.cost);
         setTotalPoints(totalPoints - player.kills - player.placement)
 

@@ -33,11 +33,11 @@ export function Rules() {
                             <tr>
                                 <th scope="col">Place</th>
                                 <th scope="col">Points</th>
-                               
+
                             </tr>
                         </thead>
-                    <tbody className="">
-                        {placeScoring.map((score) => {
+                        <tbody className="">
+                            {placeScoring.map((score) => {
                                 return (
                                     <tr>
                                         <td className="narrow-column">{score.place}</td>
@@ -46,7 +46,7 @@ export function Rules() {
                                 );
                             })}
 
-                    </tbody>
+                        </tbody>
                     </table>
                 </ul>
             </Tab>

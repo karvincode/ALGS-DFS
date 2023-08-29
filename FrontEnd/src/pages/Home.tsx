@@ -32,7 +32,6 @@ export function Home() {
     return (
         //Link will go to the sign in and sign up page
         <>
-
             <Container>
                 <Row>
                     <Col className="">

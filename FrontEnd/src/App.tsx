@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import { Navbar } from './components/Navbar'
 import { Home } from './pages/Home'
-import { Roster  } from './pages/Roster'
+import { Roster } from './pages/Roster'
 import { Rules } from './pages/Rules'
 // import { RosterProvider } from './context/RosterContext'
 
@@ -47,16 +47,16 @@ function App() {
 
   return (
     <>
-    {/* <RosterProvider> */}
-    <Navbar />
-    <Container className="mb-4 mw-100">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/roster" element={<Roster />} />
-        <Route path="/rules" element={<Rules />} />
-      </Routes>
-    </Container>
-    {/* </RosterProvider> */}
+      {/* <RosterProvider> */}
+      <Navbar />
+      <Container className="mb-4 mw-100">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/roster" element={<Roster />} />
+          <Route path="/rules" element={<Rules />} />
+        </Routes>
+      </Container>
+      {/* </RosterProvider> */}
     </>
   )
 }

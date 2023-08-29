@@ -38,13 +38,21 @@ Create Table PlayerScore(
 1. Create user Registers add the User to the User Table check to see if the USERNAME exists including there password possibly there Email though I think Cognito makes it so I do not need it.
 
 2. Read User 
+Select *
+From User
 
 3. Update User (Change UserData such as username)
+UPDATE User
+Set username = "NewUsername"
+Where UserName= "UserName"
 
 3a. Maybe Delete User I am not going to be sending emails or getting card information so I dont see the point
 
 4. READ ROSTER (find the current weekID's roster  the User logged in)
-I dont think this actually needed since I will just delete the entire roster table each week
+
+Select *
+From Roster
+Where WeekID="CurrentWeekID" AND username="Username"
 
 5. READ PLAYERS FROM ROSTER FROM USER (get the scores of the players)
 select *
@@ -69,36 +77,42 @@ WHERE username = 'kesav';
 8. READ FROM ROSTER AND PLAYERSCORE FILTER BY USERNAME AND WEEKID SORT BY PLAYERSCORE (Create a Leaderboard)
 
 SELECT 
-	u.userName 
-	SUM ( ps.score) AS [Roster Score]
-FROM User as u
-LEFT JOIN Roster as r
-	on u.username = r.username
-LEFT JOIN Player as p
- 	on r.playerID = p.playerID
-LEFT JOIN PlayerScore as ps
-	on r.playerID = ps.PlayerID
-ORDER BY
-    [Roster Score] DESC;
+    u.username,
+    SUM(ps.score) AS RosterScore
+FROM Users AS u
+LEFT JOIN Roster AS r
+    ON u.username = r.username
+LEFT JOIN Player AS p
+    ON r.playerID = p.playerID
+LEFT JOIN PlayerScore AS ps
+    ON r.playerID = ps.PlayerID
+GROUP BY u.username
+ORDER BY RosterScore DESC;
 
 9. UPDATE PlayerScore Score (A function called when a change occurs on liquipedia via the API)
-10. CREATE PlayerScore Score (A function called when a change occurs on liquipedia via the API)
-11. DELETE PlayerScore Score (New week occurs)
 
-If change has occured
+UPDATE PlayerScore
+SET 
+	Score = newScore
+Where
+	PlayerID = playerID AND WeekID = "ChangedWeekID"
+
+10. CREATE PlayerScore Score (Create a new row for each player whenever a new week happens )
+	INSERT INTO PlayerScore (weekID, PlayerID, Score)
+	VALUES
+    	('date', PlayerID, 0),
 
 
-12. CREATE PLAYER (when a player not before seen is listed on Liquipedia for ALGS.)
+11. DELETE PlayerScore Score (Probably not needed)
+DELETE FROM PlayerScore
+WHERE playerID = ' ';
 
-if Player Check:
 
-If Player Check is false Add Player:
+12. CREATE PLAYER 
+
 INSERT INTO PLAYER VALUES(playercost, TeamName, PlayerName)
-
-Retrieve WeekID's incase it was last minute
-
-ALTER TABLE PlayerScore(WeekID,SCORE, PLAYER
-
+Values
+(Integer, TeamName, PLayerName
 
 13.SQL Function that gives weeks a WeekID since they arent as simple as Feb.12 its like NA-ALGS-MatchDay1.
 will have to figure out how I want to store that based on how the API names it
@@ -107,11 +121,20 @@ Make Dates YYYY-MM-DD
 14. CHECK the rosters of every team in ALGS and look at roster movements to see if one of those teams had a roster move and alter the Team data of the players in the DB
 Have to figure out if I want to check every transaction or just only team
 
-{
+
 UPDATE Player
 Set TeamName = "NewTeamName"
 Where PlayerName= "PlayerName" And TeamName = 'OldTeamName'
-}
-15. Something if a Player CHanges a Name
+
+15. Player CHanges their Name
+
+16. READ Player
+
+SELECT *
+From Player
+
+Select PlayerID
+from PLayer
+where PlayerName = "Api'd PlayerName"
 
 

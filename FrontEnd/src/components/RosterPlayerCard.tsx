@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Button, Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 import { Roster } from '../pages/Roster';
-import {Player} from '../App'
+import { Player } from '../App'
 
 type RosterPlayerCardProps = {
     player: Player;
