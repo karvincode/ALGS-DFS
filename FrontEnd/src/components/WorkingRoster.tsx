@@ -2,7 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import { Player } from "../App";
 import { RosterPlayerCard } from "./RosterPlayerCard";
 
-type ActiveRosterProps = {
+type WorkingRosterProps = {
     playersInWorkingRoster: Player[];
     removePlayerFromWorkingRoster: (player: Player) => void;
     totalCost: number;
@@ -10,7 +10,7 @@ type ActiveRosterProps = {
     totalPoints: number;
 };
 
-export const ActiveRoster: React.FC<ActiveRosterProps> = ({ playersInWorkingRoster, totalCost, matchDay, totalPoints, removePlayerFromWorkingRoster }) => {
+export const WorkingRoster: React.FC<WorkingRosterProps> = ({ playersInWorkingRoster, totalCost, matchDay, totalPoints, removePlayerFromWorkingRoster }) => {
 
     return (
         <>

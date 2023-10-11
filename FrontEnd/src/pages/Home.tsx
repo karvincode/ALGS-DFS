@@ -20,9 +20,8 @@ export function Home() {
         "Finals",
     ];
 
-
     const [selectedMatchdayIndex, selectMatchdayIndex] = useState(1);
-
+    
     const handleMatchdayChange = (event: { target: { value: any; }; }) => {
         const selectedValueIndex = event.target.value;
         selectMatchdayIndex(selectedValueIndex);

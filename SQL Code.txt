@@ -100,7 +100,13 @@ Where
 10. CREATE PlayerScore Score (Create a new row for each player whenever a new week happens )
 	INSERT INTO PlayerScore (weekID, PlayerID, Score)
 	VALUES
-    	('date', PlayerID, 0),
+    	('2023-03-11', 1, 11),
+	('2023-03-11', 2, 17),
+	('2023-03-11', 3, 21),
+	('2023-03-11', 4, 40),
+	('2023-03-11', 5, 0),
+	('2023-03-11', 6, 0),
+	('2023-03-11', 7, 29),
 
 
 11. DELETE PlayerScore Score (Probably not needed)

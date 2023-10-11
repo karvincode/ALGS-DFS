@@ -5,7 +5,7 @@ import { RosterPlayerCard } from "../components/RosterPlayerCard"
 import { ViewPlayers } from "../components/ViewPlayers";
 import { Player } from '../App'
 import playersFile from "../data/players.json"
-import { ActiveRoster } from "../components/ActiveRoster";
+import { WorkingRoster } from "../components/WorkingRoster";
 
 export function Roster() {
     const [matchDay, setMatchDay] = useState(3);
@@ -13,6 +13,7 @@ export function Roster() {
     const [playersNotInWorkingRoster, setPlayersNotInWorkingRoster] = useState<Player[]>([]);
     const [totalCost, setTotalCost] = useState(0);
     const [totalPoints, setTotalPoints] = useState(0)
+    
 
     //Initially because players in Working ROster is empty every player is not in Working Roster
     useEffect(() => {
@@ -47,7 +48,7 @@ export function Roster() {
                     <ViewPlayers addPlayerToWorkingRoster={addPlayerToWorkingRoster} playersNotInWorkingRoster={playersNotInWorkingRoster} ></ViewPlayers>
                 </Col>
                 <Col xs={8} className="px-2">
-                    <ActiveRoster playersInWorkingRoster={playersInWorkingRoster} totalCost={totalCost} matchDay={matchDay} totalPoints={totalPoints} removePlayerFromWorkingRoster={removePlayerFromWorkingRoster}></ActiveRoster>
+                    <WorkingRoster playersInWorkingRoster={playersInWorkingRoster} totalCost={totalCost} matchDay={matchDay} totalPoints={totalPoints} removePlayerFromWorkingRoster={removePlayerFromWorkingRoster}></WorkingRoster>
                 </Col>
             </Row>
         </Container>

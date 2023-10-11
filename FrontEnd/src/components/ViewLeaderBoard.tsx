@@ -1,3 +1,6 @@
+import leaderboardData from "../data/leaderboardData.json"
+
+
 type HandleMatchdayChange = (event: {
     target: {
         value: any;
@@ -41,17 +44,13 @@ export const ViewLeaderBoard: React.FC<ViewLeaderBoardProps> = ({ selectedMatchd
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {placeScoring.map((leaderboard, index) => {
-                                const rank = index +1;
-                                return (
-                                    <tr>
-                                        <td className="narrow-column">{rank}</td>
-                                        <td className="narrow-column">{leaderboard.username}</td>
-                                        <td className="narrow-column">{leaderboard.points}</td>
-                                    </tr>
-                                );
-                            })} */}
-
+                    {leaderboardData.map((entry, index) => (
+                        <tr key={index}>
+                            <td className="narrow-column">{entry.rank}</td>
+                            <td className="narrow-column">{entry.username}</td>
+                            <td className="narrow-column">{entry.points}</td>
+                        </tr>   
+                    ))}
                 </tbody>
             </table>
         </>
